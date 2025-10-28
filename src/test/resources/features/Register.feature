@@ -1,7 +1,7 @@
 Feature: Register
   Scenario: Register User
     Given User in homepage
-    When User goto SignupLogin Menu
+    When User goto "SignupLogin" Menu
     And User verify on SignupLogin Menu
     And User enter "name" register
     And User enter "email" register
