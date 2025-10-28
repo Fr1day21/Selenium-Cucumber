@@ -29,4 +29,13 @@ Feature: Register
     And User verify account deleted
     Then User click continue
 
+  Scenario: Register User with existing email
+    Given User in homepage
+    When User goto SignupLogin Menu
+    And User verify on SignupLogin Menu
+    And User enter "name" register
+    And User enter "emailExisting" register
+    And User click "signup"
+    Then User validation invalid "signup"
+
 
