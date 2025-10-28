@@ -9,6 +9,8 @@ public class SignupLoginPage {
 
     //Locator Validation
     private final By loginPageTitle = By.xpath("//h2[normalize-space()='New User Signup!']");
+    private final By incorrectLoginMessage = By.xpath("//p[normalize-space()='Your email or password is incorrect!']");
+    private final By emailExistingMessage = By.xpath("//p[normalize-space()='Email Address already exist!']");
     //Locator Field
     private final By emailLoginField = By.name("email");
     private final By passwordLoginField = By.name("password");
@@ -22,6 +24,14 @@ public class SignupLoginPage {
     //Action
     public String getLoginPage(){
         return driver.findElement(loginPageTitle).getText();
+    }
+
+    public String getInvalidLogin(){
+        return driver.findElement(incorrectLoginMessage).getText();
+    }
+
+    public String getExistingEmail(){
+        return driver.findElement(emailExistingMessage).getText();
     }
 
     public void enterEmailLogin(String email){
