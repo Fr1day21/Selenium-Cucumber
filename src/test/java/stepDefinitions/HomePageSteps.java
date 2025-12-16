@@ -1,7 +1,9 @@
 package stepDefinitions;
 
+import com.github.javafaker.Faker;
 import config.ConfigReader;
 import context.TestContext;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -15,6 +17,7 @@ public class HomePageSteps {
 
     HomePage homePage = new HomePage();
     TestContext context;
+    Faker faker = new Faker();
 
     public HomePageSteps(TestContext context){
         this.context = context;
@@ -25,9 +28,24 @@ public class HomePageSteps {
         assertTrue(homePage.getValidationHomePage().contains("Automation"));
     }
 
-    @When("User goto SignupLogin Menu")
-    public void user_goto_signuplogin_menu() {
-        homePage.goToSignupLoginMenu();
+    @When("User goto {string} Menu")
+    public void user_goto_signuplogin_menu(String menu) {
+        switch (menu){
+            case "SignupLogin" :
+                homePage.goToSignupLoginMenu();
+                break;
+            case "ContactUs" :
+                homePage.goToContactUsMenu();
+                break;
+            case "Test Cases" :
+                homePage.goToTestCaseMenu();
+                break;
+            case "Products" :
+                homePage.goToProductMenu();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid Menu");
+        }
     }
 
     @Then("User validation correct account login {string}")
@@ -59,5 +77,36 @@ public class HomePageSteps {
     @Then("User click continue")
     public void userClickContinue() {
         homePage.clickContinue();
+    }
+
+    @When("User scroll down to footer")
+    public void userScrollDownToFooter() {
+        homePage.scrollDownHomePage();
+    }
+
+    @And("User verify text {string}")
+    public void userVerifyText(String text) {
+        assertTrue(homePage.getSubscriptionTitle().contains(text));
+    }
+
+    @And("User enter email address")
+    public void userEnterEmailAddress() {
+        homePage.enterEmailSubscription(faker.internet().emailAddress());
+    }
+
+    @And("User click arrow button")
+    public void userClickArrowButton() {
+        homePage.clickArrowButton();
+    }
+
+    @Then("User verify {string} display")
+    public void userVerifyDisplay(String condition) {
+        switch (condition){
+            case "Subscription Message" :
+                homePage.verifySubscriptionMessage();
+                break;
+            default:
+                throw new IllegalArgumentException("Not Working");
+        }
     }
 }
