@@ -2,14 +2,14 @@ package utils;
 
 public class Helper {
 
-    String username;
+    String searchProduct;
 
-    public String getUsername() {
-        return username;
+    public String getSearchProduct() {
+        return searchProduct;
     }
 
-    public String setUsername(String username) {
-        this.username = username;
-        return username;
+    public String setSearchProduct(String searchProduct) {
+        this.searchProduct = searchProduct;
+        return searchProduct;
     }
 }
