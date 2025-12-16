@@ -7,7 +7,7 @@ import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
 
 public class Hooks {
-    private WebDriver driver;
+    public static WebDriver driver;
 
     @Before
     public void setup() {
