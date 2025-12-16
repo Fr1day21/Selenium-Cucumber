@@ -31,7 +31,7 @@ Feature: Register
 
   Scenario: Register User with existing email
     Given User in homepage
-    When User goto SignupLogin Menu
+    When User goto "SignupLogin" Menu
     And User verify on SignupLogin Menu
     And User enter "name" register
     And User enter "emailExisting" register
